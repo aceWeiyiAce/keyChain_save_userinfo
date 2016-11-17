@@ -18,7 +18,7 @@
              (id)kSecAttrAccessibleAfterFirstUnlock, (id)kSecAttrAccessible,
              nil];
 }
-+ (void)save:(NSString *)service data:(id)data{
++ (void)keyChainSave:(NSString *)service data:(id)data{
     NSMutableDictionary *keychainQuery = [self getKeychainQuery:service];
     
     SecItemDelete((CFDictionaryRef)keychainQuery);
@@ -28,7 +28,7 @@
     SecItemAdd((CFDictionaryRef)keychainQuery, NULL);
 }
 
-+ (id)load:(NSString *)service{
++ (id)keyChainLoad:(NSString *)service{
     id ret = nil;
     
     NSMutableDictionary *keychainQuery = [self getKeychainQuery:service];
@@ -56,7 +56,7 @@
     return  ret;
 }
 
-+ (void)delete:(NSString *)service{
++ (void)keyChainDelete:(NSString *)service{
 
     NSMutableDictionary *keychainQuery = [self getKeychainQuery:service];
     
